@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Local tooling
+prepros.config
+prepros-6.config
+.sass-cache/
+*.css.map
+
+# Logs
+*.log
+npm-debug.log*
+
+# Node — the site has no build step, but npx serve may leave these behind
+node_modules/
+.npm/
+
+# Environment
+.env
+.env.*
+
+# Hosting
+.vercel/

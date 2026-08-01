@@ -1,0 +1,302 @@
+/* ==========================================================================
+   components.css — nav, mobile menu, links, banner, gallery
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Skip link
+   -------------------------------------------------------------------------- */
+
+.skip-link {
+  position: absolute;
+  left: var(--s-3);
+  top: var(--s-3);
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: var(--s-3);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--c-ink);
+  background: var(--c-paper);
+  transform: translateY(-200%);
+  transition: transform var(--transition);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Navigation
+   -------------------------------------------------------------------------- */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-block: var(--s-2);
+  border-bottom: 1px solid var(--c-line-light);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+}
+
+.brand__mark {
+  width: 26px;
+  height: 26px;
+}
+
+.brand__name {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Mobile is the base state: the menu is a full-screen panel, closed. */
+.nav__menu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--s-4);
+  margin: 0;
+  padding: var(--s-8) var(--s-5);
+  background: var(--c-stone);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  /* visibility is delayed on close so the fade-out is seen, and switched
+     instantly on open — a transitioned visibility still computes to hidden at
+     progress 0, which makes the panel unfocusable on the frame it opens. */
+  transition: opacity var(--transition), transform var(--transition), visibility 0s linear 180ms;
+}
+
+.nav__menu[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity var(--transition), transform var(--transition), visibility 0s;
+}
+
+body[data-menu-open="true"] {
+  overflow: hidden;
+}
+
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  border-bottom-color: var(--c-line-strong);
+}
+
+.nav__link[aria-current="true"] {
+  border-bottom-color: var(--c-paper);
+}
+
+/* Toggle — two offset rules, the mark the original drew with empty divs.
+   Here it is a real button with an accessible name and a 44x44 hit area. */
+.nav__toggle {
+  position: relative;
+  z-index: 60;
+  display: grid;
+  place-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+}
+
+.nav__toggle-bar {
+  display: block;
+  height: 1.5px;
+  background: var(--c-paper);
+  transition: width var(--transition), transform var(--transition), opacity var(--transition);
+}
+
+.nav__toggle-bar:nth-child(1) {
+  width: 34px;
+}
+
+.nav__toggle-bar:nth-child(2) {
+  width: 15px;
+  margin-left: auto;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) {
+  transform: translateY(3px) rotate(45deg);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) {
+  width: 34px;
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* From 768px the panel becomes an inline row and the toggle disappears. */
+@media (min-width: 768px) {
+  .nav__menu {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--s-4);
+    padding: 0;
+    background: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .nav__link {
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+  }
+
+  .nav__toggle {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Scroll cue
+   -------------------------------------------------------------------------- */
+
+.scroll-cue {
+  display: grid;
+  place-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--c-ink);
+  background: var(--c-paper);
+  border-radius: var(--radius-pill);
+  transform: rotate(90deg);
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.scroll-cue:hover,
+.scroll-cue:focus-visible {
+  background: var(--c-sand-light);
+}
+
+.scroll-cue:active {
+  transform: rotate(90deg) scale(0.94);
+}
+
+/* --------------------------------------------------------------------------
+   Banner — the full-width fixed image band
+   -------------------------------------------------------------------------- */
+
+.banner {
+  height: 260px;
+  margin-top: var(--s-5);
+  background-color: var(--c-ink-soft);
+  background-image: url("../img/content/banner-chairs-mountain-window.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .banner {
+    height: 340px;
+  }
+}
+
+/* background-attachment: fixed is janky on touch and ignored by iOS Safari,
+   so the parallax only runs where it actually works. Must stay after the
+   768px block: equal specificity, so source order decides. */
+@media (min-width: 1024px) and (hover: hover) {
+  .banner {
+    height: 420px;
+    background-attachment: fixed;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Gallery
+   -------------------------------------------------------------------------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+  margin: 0;
+  padding-top: var(--s-5);
+}
+
+.gallery__figure {
+  margin: 0;
+}
+
+.gallery__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--c-ink-soft);
+}
+
+.gallery__caption {
+  padding-top: var(--s-2);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  color: var(--c-muted);
+}
+
+@media (min-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-5);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Text link
+   -------------------------------------------------------------------------- */
+
+/* inline-flex + min-height gives the 44px touch target without pushing the
+   underline away from the text, which a border-bottom on a tall box would. */
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--c-sand-light);
+}
+
+/* --------------------------------------------------------------------------
+   Utilities
+   -------------------------------------------------------------------------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

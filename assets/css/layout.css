@@ -1,0 +1,223 @@
+/* ==========================================================================
+   layout.css — containers, hero, sections, footer
+   Mobile-first. Breakpoints: 480 / 768 / 1024 / 1440.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Container
+   -------------------------------------------------------------------------- */
+
+.wrap {
+  width: 97%;
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s-5);
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-bottom: var(--s-3);
+  color: var(--c-paper);
+  background: var(--c-stone);
+}
+
+/* The original laid the wordmark over the photo with position: absolute.
+   Measured against the actual image, 74% of that overlap sat below 4.5:1 and
+   bottomed out at 1.00:1 (white on the white wall), so the two are stacked:
+   every glyph now sits on the solid stone background at 5.06:1. */
+.hero__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  padding-block: var(--s-4);
+}
+
+.hero__img {
+  width: min(300px, 58vw);
+  height: auto;
+}
+
+.hero__title {
+  font-size: var(--fs-display);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: var(--tracking-display);
+  text-align: center;
+}
+
+.hero__foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  text-align: center;
+}
+
+.hero__foot p {
+  max-width: 62ch;
+  font-size: var(--fs-xs);
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   Sections
+   -------------------------------------------------------------------------- */
+
+.section {
+  padding-block: var(--s-6);
+}
+
+.section + .section {
+  padding-top: 0;
+}
+
+.section__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-2) var(--s-4);
+  padding-bottom: var(--s-2);
+  border-bottom: 2px solid var(--c-line-strong);
+}
+
+.section__title,
+.section__label {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.section__title span,
+.section__label {
+  color: var(--c-muted);
+}
+
+/* Intro block: copy on the left, editorial markers on the right */
+.intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-top: var(--s-4);
+}
+
+.intro__text {
+  flex: 1 1 34ch;
+  max-width: var(--measure);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.intro__marks {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-5);
+}
+
+.intro__index {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+}
+
+.intro__star {
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--c-sand-light);
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  padding-block: var(--s-5) var(--s-6);
+  margin-top: var(--s-6);
+  border-top: 1px solid var(--c-line-light);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3) var(--s-4);
+}
+
+.site-footer__brand {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.site-footer__credit {
+  font-size: var(--fs-xs);
+  color: var(--c-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Error page
+   -------------------------------------------------------------------------- */
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--s-4);
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: var(--s-7);
+}
+
+.error__code {
+  font-size: clamp(4rem, 22vw, 10rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  color: var(--c-sand-light);
+}
+
+.error__title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+}
+
+.error__text {
+  max-width: 46ch;
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoints
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: var(--s-4);
+  }
+
+  .section {
+    padding-block: var(--s-7);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__img {
+    width: 360px;
+  }
+
+  .intro__text {
+    font-size: var(--fs-base);
+  }
+}

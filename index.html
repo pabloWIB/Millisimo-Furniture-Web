@@ -1,91 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="CSS/normalize.css">
-	<link rel="stylesheet" href="CSS/styles.css">
-	<link rel="stylesheet" href="CSS/fonts.css">
-	<link rel="icon" type="image/x-icon" href="Nevada.png">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.slim.min.js"></script>
-	<script src="JS/script.js"></script>
-	<title>Millisimo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MILLISIMO NEVADA — Industrial Chair Collection 2023</title>
+  <meta name="description" content="NEVADA is the 2023 MILLISIMO collection of industrial chairs: seating renovated in wood and metal, presented one piece at a time for unique interiors.">
+  <link rel="canonical" href="https://nevada.wib.digital/">
+  <meta name="theme-color" content="#726e69">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MILLISIMO">
+  <meta property="og:title" content="MILLISIMO NEVADA — Industrial Chair Collection 2023">
+  <meta property="og:description" content="NEVADA is the 2023 MILLISIMO collection of industrial chairs: seating renovated in wood and metal, presented one piece at a time for unique interiors.">
+  <meta property="og:url" content="https://nevada.wib.digital/">
+  <meta property="og:image" content="https://nevada.wib.digital/assets/img/content/og-nevada.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Moulded shell chairs in a bare room facing a window onto a snowy mountain range.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/logo/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/logo/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+
+  <script src="assets/js/main.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pablo Nieto Pérez",
+    "url": "https://wib.digital",
+    "jobTitle": "Web Designer and Developer",
+    "sameAs": [
+      "https://www.fiverr.com/pablonietop",
+      "https://github.com/pabloWIB",
+      "https://www.linkedin.com/in/pablo-nieto-perez-39a530292"
+    ]
+  }
+  </script>
 </head>
+
 <body>
-	<header>
-		<nav>
-			<div>
-				<h1>MILLISIMO</h1>
-			</div>
-			<div>
-				<div class="textNumber">
-					<p>BRANDING UNIVERSAL</p>
-					<div class="NumberRight">
-						<span>3</span>
-					</div>
-				</div>
-				<a href="#">BRANDING UNIVERSAL</a>
-				<a href="#">PRICING DESIGN</a>
-				<div class="miniButton"></div>
-				<div class="lines">
-					<div></div>
-					<div></div>
-				</div>
-			</div>
-		</nav>
-		<main>
-			<div class="firstImg">
-				<img src="IMG/photo11.jpg" alt="Chairs">
-			</div>
-			<div>
-				<h2>NEVADA</h2>
-			</div>
-		</main>
-		<div class="headerFooter">
-			<p>NEW COLLECTIONS PRESENTATIONS ©2023 PRODUCTS FURNITURE <span>WITH INSPIRATION</span> AND INDUSTRIAL STYLE. WEBSITE DESIGN <br> MINIMALIST CONCEPT AND ANIMATION CREATED HTML ──</p>
-			<a href="#page2">
-				<p>›</p>
-			</a>
-		</div>
-	</header>
-	<section id="page2">
-		<article>
-			<div>
-				<h2>ABOUT <span>COLLECTIONS</span></h2>
-			</div>
-			<div>
-				<h2>INDUSTRIAL CHAIRS</h2>
-			</div>
-		</article>
-		<div>
-			<div>
-				<p>MODERN COLLECTIONS AND PRODUCTION / RENOVATION OF CHAIRS FOR <br> UNIQUE INTERIORS AND STYLING INTERIOR ROOM. WOODEN ELEMENTS AND <br> METAL ── ELEMENTS OF THE INDUSTRIAL STYLE.</p>
-			</div>
-			<div>
-				<span>01</span>
-			</div>
-			<div>
-				<span>*</span>
-			</div>
-		</div>
-		<div></div>
-		<div></div>
-		<div>
-			<a href="#">PHOTOGRAPHY ARTIST</a>
-			<p>2023</p>
-		</div>
-		<div>
-			<div></div>
-			<div>
-				<div>
-					<h3>COLLECTIONS FURNITURE</h3>
-					<h3>INDUSTRIAL CHAIRS</h3>
-				</div>
-				<div>
-					<p>DISCOVER THE LATEST PHOTOS FROM <br> PROFESSIONALS AND CREATORS FROM <br>PHOTO COLLECTIONS FROM AROUND<br>  THE WORLD. FOLLOW THE TRENDS AND <br> CHECK INSPIRATIONSS FOR DESIGN <br> LOVERS AND ARTISTS. </p>
-				</div>
-			</div>
-		</div>
-	</section>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="hero" id="top">
+    <nav class="wrap nav" aria-label="Main">
+      <a class="brand" href="#top">
+        <img class="brand__mark" src="assets/img/logo/nevada-mark.png" alt="" width="26" height="26">
+        <span class="brand__name">MILLISIMO</span>
+      </a>
+
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+        <span class="nav__toggle-bar" aria-hidden="true"></span>
+        <span class="nav__toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <ul class="nav__menu" id="site-menu">
+        <li><a class="nav__link" href="#collection">COLLECTION</a></li>
+        <li><a class="nav__link" href="#chairs">CHAIRS</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero__stage">
+      <h1 class="hero__title">NEVADA</h1>
+      <img class="hero__img" src="assets/img/content/hero-gold-lounge-chair.webp" width="1024" height="1024" alt="Gold leather lounge chair beside a three-tier side table holding cat figurines, in a pale panelled room.">
+    </div>
+
+    <div class="wrap hero__foot">
+      <p>NEW COLLECTIONS PRESENTATION ©2023 — FURNITURE PRODUCTS WITH INSPIRATION AND INDUSTRIAL STYLE. WEBSITE DESIGN: MINIMALIST CONCEPT, BUILT IN HTML AND CSS.</p>
+      <a class="scroll-cue" href="#collection" aria-label="Scroll to the collection">›</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="wrap section" id="collection">
+      <div class="section__head">
+        <h2 class="section__title">ABOUT <span>COLLECTIONS</span></h2>
+        <p class="section__label">INDUSTRIAL CHAIRS</p>
+      </div>
+
+      <div class="intro">
+        <p class="intro__text">MODERN COLLECTIONS AND PRODUCTION / RENOVATION OF CHAIRS FOR UNIQUE INTERIORS AND INTERIOR STYLING. WOODEN AND METAL ELEMENTS — THE ELEMENTS OF INDUSTRIAL STYLE.</p>
+        <p class="intro__marks">
+          <span class="intro__index">01</span>
+          <span class="intro__star" aria-hidden="true">*</span>
+        </p>
+      </div>
+
+      <div class="banner" role="img" aria-label="Moulded shell chairs with animal-print upholstery in a bare room facing a window onto a snowy mountain range."></div>
+    </section>
+
+    <section class="wrap section" id="chairs">
+      <div class="section__head">
+        <h2 class="section__title">COLLECTIONS <span>FURNITURE</span></h2>
+        <p class="section__label">2023</p>
+      </div>
+
+      <ul class="gallery">
+        <li>
+          <figure class="gallery__figure">
+            <img class="gallery__img" src="assets/img/content/patchwork-armchairs-window.webp" width="800" height="609" loading="lazy" alt="Two moulded armchairs upholstered in black-and-white and multicoloured patchwork, facing a window onto a snowy valley.">
+            <figcaption class="gallery__caption">01 — PATCHWORK UPHOLSTERY</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="gallery__figure">
+            <img class="gallery__img" src="assets/img/content/ochre-swivel-armchair.webp" width="375" height="375" loading="lazy" alt="Ochre barrel-shaped armchair next to a slim side table, below a framed mountain illustration.">
+            <figcaption class="gallery__caption">02 — OCHRE BARREL SEAT</figcaption>
+          </figure>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <p class="site-footer__brand">MILLISIMO — NEVADA 2023</p>
+      <p class="site-footer__credit">
+        Built by <a class="link" href="https://wib.digital" rel="noopener">wib.digital</a>
+        — <a class="link" href="https://www.fiverr.com/pablonietop" rel="noopener">hire me on Fiverr</a>
+      </p>
+    </div>
+  </footer>
 </body>
 </html>

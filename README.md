@@ -1,168 +1,126 @@
-![image](https://github.com/pabloDYEL/ESTATICA-31/assets/116923433/884f6f03-4d8b-4bb8-8480-7aa61e854517)
+# Millisimo — Nevada Collection
 
-# Nevada
+A single-page presentation of NEVADA, MILLISIMO's 2023 collection of industrial chairs. Static HTML, CSS and JavaScript, no build step and no dependencies.
 
-A minimalist industrial furniture showcase website featuring modern chair collections and design inspiration. Built with clean animations and contemporary styling to highlight industrial-style furniture pieces with wooden and metal elements.
+[![Live demo](https://img.shields.io/badge/demo-nevada.wib.digital-2ea44f)](https://nevada.wib.digital)
+[![Hire me on Fiverr](https://img.shields.io/badge/Hire%20me%20on-Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/pablonietop)
+![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
+![Build step](https://img.shields.io/badge/build%20step-none-lightgrey)
+![First load](https://img.shields.io/badge/first%20load-162%20KB-blue)
 
-## Tech Stack
+## Description
 
-- **HTML5** - Semantic markup and structure
-- **CSS3** - Modern styling with animations and responsive design
-- **Vanilla JavaScript** - Interactive elements and smooth animations
-- **Static Hosting** - No server-side dependencies required
+A furniture collection page that treats chairs the way a gallery treats objects: large, isolated, one at a time. The brand is MILLISIMO and the range on show is NEVADA — industrial chairs in wood and metal, presented across a full-height cover, an introduction to the collection and a two-piece gallery.
+
+The page is a presentation, not a shop. There is no cart, no price list and no product detail pages, and nothing on it pretends otherwise.
 
 ## Features
 
-- Modern industrial furniture collections showcase
-- Minimalist design with smooth animations
-- Responsive layout for all device sizes
-- Professional photography gallery integration
-- Clean typography and contemporary styling
-- Industrial design inspiration content
-- Chair collection presentations with detailed imagery
-- Mobile-optimized user experience
+- Full-height cover with the collection wordmark set at display scale.
+- Fixed-attachment image band, restricted to pointer devices at 1024px and up, where it actually works.
+- Mobile menu with background scroll lock, close on Escape, close on link click and focus returned to the toggle.
+- Current section tracked with `IntersectionObserver` and exposed as `aria-current`.
+- WCAG AA contrast throughout: body text 5.06:1 or better, accents 7.70:1.
+- Images served as WebP with intrinsic `width`/`height`, so the layout does not shift on load.
+- No build step, no npm dependencies, no framework.
 
-## Project Structure
+## Tech stack
+
+| Layer | Technology | Role in project |
+|---|---|---|
+| Markup | HTML5 | `index.html` and `404.html` |
+| Styling | CSS3 custom properties | Three layers: `base.css`, `layout.css`, `components.css` |
+| Behaviour | Vanilla JavaScript (ES5 syntax, IIFE) | `assets/js/main.js` — mobile menu and section tracking |
+| Type | Inter, via Google Fonts | Preconnected, `display=swap` |
+| Images | WebP, PNG | Converted and resized from the original JPEG and PNG sources |
+| Hosting | Vercel | Static, no build command |
+
+`main.js` is a classic deferred script rather than an ES module on purpose: `file://` blocks module imports, and the page is meant to work when `index.html` is opened straight from disk.
+
+## Project structure
 
 ```
-nevada/
-├── index.html              # Main homepage
-├── css/
-│   ├── style.css          # Main stylesheet
-│   ├── animations.css     # Animation definitions
-│   └── responsive.css     # Mobile responsiveness
-├── js/
-│   ├── main.js           # Core functionality
-│   ├── animations.js     # Animation controls
-│   └── gallery.js        # Image gallery features
-├── images/
-│   ├── furniture/        # Product photography
-│   ├── collections/      # Collection images
-│   └── inspiration/      # Design inspiration photos
+.
+├── index.html                  # The collection page
+├── 404.html                    # Error page, noindex, links back to the collection
+├── robots.txt                  # Allows everything, points at the sitemap
+├── sitemap.xml                 # One URL: the collection page
 ├── assets/
-│   ├── fonts/           # Custom typography
-│   └── icons/           # UI elements
-└── README.md
+│   ├── css/
+│   │   ├── base.css            # Custom properties, reset, base typography
+│   │   ├── layout.css          # Container, hero, sections, footer, breakpoints
+│   │   └── components.css      # Nav, mobile menu, banner, gallery, links
+│   ├── js/
+│   │   └── main.js             # Only script on the site
+│   └── img/
+│       ├── content/            # Hero, banner, gallery, Open Graph image
+│       └── logo/               # Collection mark and favicons
+└── docs/
+    ├── auditoria.md            # Audit of the project before the reorganisation
+    └── cambios.md              # What changed, grouped by phase
 ```
 
-## Quick Start
+Load order matters: `base.css` defines the custom properties the other two consume.
 
-### Prerequisites
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- Local web server for development (optional but recommended)
+## Running locally
 
-### Local Development
+The site is static with no build step, so opening the file works:
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/pabloWIB/Nevada.git
-   cd Nevada
-   ```
+```bash
+open index.html      # macOS
+start index.html     # Windows
+```
 
-2. **Start local development server**
-   ```bash
-   # Using Node.js (if available)
-   npx serve .
-   
-   # Using PHP (if available)
-   php -S localhost:8000
-   
-   # Or simply open index.html in your browser
-   open index.html
-   ```
+To serve it over HTTP instead:
 
-3. **View in browser**
-   Navigate to `http://localhost:8000` or open `index.html` directly
+```bash
+npx http-server -p 4291
+# or
+python -m http.server 4291
+```
 
-### File Modifications
+Then visit `http://localhost:4291`.
 
-- Edit `index.html` for content changes
-- Modify `css/style.css` for styling adjustments
-- Update `js/main.js` for functionality changes
-- Replace images in respective folders for new content
+Serving over HTTP is what production does, and it is the only way to exercise `404.html`, which a local file open will never reach.
+
+## Editing
+
+There is nothing to compile. Edit the CSS and JavaScript directly.
+
+Design tokens all live in `:root` in `assets/css/base.css` — colour, spacing, type scale, transitions. Change a value there and it propagates. The spacing scale is 4/8/16/24/32/48/64/96; stick to it rather than adding one-off pixel values.
+
+Adding a chair means adding a `<li>` to the gallery in `index.html` and its image to `assets/img/content/`. There is no data file. Keep new images at 800px wide or less, give each one a real `alt`, and set `width` and `height` so the grid does not shift while they load.
+
+## Accessibility and performance
+
+Verified with headless Chrome across 360, 480, 768, 1024 and 1440px:
+
+- No horizontal scroll at any of those widths.
+- No console errors or warnings on either page.
+- One `h1` per page, heading hierarchy without gaps.
+- Every interactive target at least 44×44px.
+- Visible focus ring on every interactive element.
+- First load 162 KB, including images.
 
 ## Deployment
 
-### Static Hosting Platforms
+Deployed on Vercel at [nevada.wib.digital](https://nevada.wib.digital). Static: upload the repository root as-is, no build command and no output directory. Vercel serves `404.html` for unknown routes automatically, so no routing configuration is needed.
 
-**Netlify**
-1. Connect your GitHub repository
-2. Deploy automatically on push
-3. Custom domain support available
+If you deploy somewhere else, update the absolute URLs in `sitemap.xml`, `robots.txt` and the `canonical` and Open Graph tags in `index.html` — they point at `nevada.wib.digital`.
 
-**Vercel**
-1. Import project from GitHub
-2. Zero-configuration deployment
-3. Instant global CDN
+## Author
 
-**GitHub Pages**
-1. Enable Pages in repository settings
-2. Select source branch (main/gh-pages)
-3. Access via username.github.io/Nevada
-
-**Alternative Platforms**
-- Firebase Hosting
-- Surge.sh
-- Cloudflare Pages
-
-### Manual Deployment
-Upload all files to your web hosting provider's public directory via FTP/SFTP.
-
-## Customization
-
-### Content Updates
-- **Product Information**: Edit furniture descriptions in `index.html`
-- **Collections**: Update collection data in the HTML structure
-- **Photography**: Replace images in `/images/` directories
-- **Company Details**: Modify branding information throughout
-
-### Styling Changes
-- **Colors**: Update CSS custom properties in `:root` selector
-- **Typography**: Modify font families and sizes in `css/style.css`
-- **Layout**: Adjust grid systems and spacing variables
-- **Animations**: Customize timing and effects in `css/animations.css`
-
-### Adding New Sections
-1. Create HTML structure in `index.html`
-2. Add corresponding styles in CSS files
-3. Implement interactive features in JavaScript files
-4. Test responsiveness across devices
-
-### Performance Optimization
-- Compress images before adding to the project
-- Minify CSS and JavaScript files for production
-- Optimize font loading and fallbacks
-- Consider lazy loading for large image galleries
-
-## Browser Support
-
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-Modern CSS features used include CSS Grid, Flexbox, and CSS Custom Properties. Fallbacks provided for older browsers where necessary.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/new-feature`)
-5. Create a Pull Request
-
-### Development Guidelines
-- Maintain semantic HTML structure
-- Follow CSS naming conventions (BEM methodology preferred)
-- Keep JavaScript modular and well-commented
-- Test across multiple browsers and devices
-- Optimize images and assets before committing
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+**Pablo Nieto Pérez** — [wib.digital](https://wib.digital)
+GitHub: [@pabloWIB](https://github.com/pabloWIB)
 
 ---
 
-**Nevada** - Industrial furniture showcase with modern design and professional presentation. Built for furniture designers, interior stylists, and design enthusiasts.
+## Hire me
+
+I build **custom internal tools, CRMs and dashboards** for small teams, and
+**conversion-focused websites** for businesses.
+
+- [Custom internal tool, CRM or dashboard](https://www.fiverr.com/pablonietop/build-a-custom-internal-app-for-your-business) — from $45
+- [Conversion-focused website](https://www.fiverr.com/pablonietop/convert-your-landing-page-design-to-code) — from $80
+- [All my services on Fiverr](https://www.fiverr.com/pablonietop)
+- [wib.digital](https://wib.digital)

@@ -1,0 +1,164 @@
+/* ==========================================================================
+   base.css — custom properties, reset, base typography
+   Load order: base.css -> layout.css -> components.css
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Variables
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Colour — derived from the original palette.
+     The header grey was lightened to #A3A3A3 in the first build, which put
+     white text at 2.52:1. It is now #726E69: same stone character, 5.06:1. */
+  --c-stone: #726e69;
+  --c-stone-dark: #5f5c58;
+  --c-ink: #151515;
+  --c-ink-soft: #1e1e1e;
+  --c-paper: #fcfcfc;
+  --c-muted: #9a9a9a;          /* 6.49:1 on --c-ink */
+  --c-sand: #9f7b5b;           /* original selection highlight */
+  --c-sand-light: #c9a179;     /* 7.70:1 on --c-ink */
+  --c-line-light: rgba(252, 252, 252, 0.28);
+  --c-line-strong: rgba(252, 252, 252, 0.75);
+
+  /* Spacing scale */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 16px;
+  --s-4: 24px;
+  --s-5: 32px;
+  --s-6: 48px;
+  --s-7: 64px;
+  --s-8: 96px;
+
+  /* Type */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", roboto, helvetica, arial, sans-serif;
+  --fs-xs: 0.75rem;      /* 12px */
+  --fs-sm: 0.8125rem;    /* 13px */
+  --fs-base: 0.9375rem;  /* 15px */
+  --fs-md: 1.0625rem;    /* 17px */
+  --fs-lg: 1.375rem;     /* 22px */
+  --fs-display: clamp(3.25rem, 18vw, 10.125rem);
+  --tracking-wide: 0.28em;
+  --tracking-display: 0.06em;
+  --measure: 68ch;
+
+  /* Shape and motion */
+  --radius-pill: 999px;
+  --transition: 180ms ease;
+
+  /* Layout */
+  --gutter: var(--s-3);
+  --container: 1600px;
+}
+
+/* --------------------------------------------------------------------------
+   Reset
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+  color: var(--c-paper);
+  background: var(--c-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-style: none;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-size: inherit;
+  font-weight: inherit;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* --------------------------------------------------------------------------
+   Base typography and shared behaviour
+   -------------------------------------------------------------------------- */
+
+::selection {
+  color: var(--c-paper);
+  background: var(--c-sand);
+}
+
+img::selection {
+  background: none;
+}
+
+/* a { all: unset } in the original removed the focus ring entirely, leaving
+   keyboard navigation invisible. A visible ring is restored here. */
+:focus-visible {
+  outline: 2px solid var(--c-sand-light);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background: var(--c-stone);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--c-paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
