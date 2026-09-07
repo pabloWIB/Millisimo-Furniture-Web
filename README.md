@@ -2,7 +2,7 @@
 
 A single-page presentation of NEVADA, MILLISIMO's 2023 collection of industrial chairs. Static HTML, CSS and JavaScript, no build step and no dependencies.
 
-[![Live demo](https://img.shields.io/badge/demo-nevada.wib.digital-2ea44f)](https://nevada.wib.digital)
+[![Live demo](https://img.shields.io/badge/demo-pablowib.github.io/Millisimo-Furniture-Web-2ea44f)](https://pablowib.github.io/Millisimo-Furniture-Web)
 [![Hire me on Fiverr](https://img.shields.io/badge/Hire%20me%20on-Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/pablonietop)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
 ![Build step](https://img.shields.io/badge/build%20step-none-lightgrey)
@@ -33,7 +33,7 @@ The page is a presentation, not a shop. There is no cart, no price list and no p
 | Behaviour | Vanilla JavaScript (ES5 syntax, IIFE) | `assets/js/main.js` — mobile menu and section tracking |
 | Type | Inter, via Google Fonts | Preconnected, `display=swap` |
 | Images | WebP, PNG | Converted and resized from the original JPEG and PNG sources |
-| Hosting | Vercel | Static, no build command |
+| Hosting | GitHub Pages | Static, no build command |
 
 `main.js` is a classic deferred script rather than an ES module on purpose: `file://` blocks module imports, and the page is meant to work when `index.html` is opened straight from disk.
 
@@ -104,9 +104,9 @@ Verified with headless Chrome across 360, 480, 768, 1024 and 1440px:
 
 ## Deployment
 
-Deployed on Vercel at [nevada.wib.digital](https://nevada.wib.digital). Static: upload the repository root as-is, no build command and no output directory. Vercel serves `404.html` for unknown routes automatically, so no routing configuration is needed.
+Deployed on GitHub Pages at [pablowib.github.io/Millisimo-Furniture-Web](https://pablowib.github.io/Millisimo-Furniture-Web). Static: upload the repository root as-is, no build command and no output directory. GitHub Pages serves `404.html` for unknown routes automatically, so no routing configuration is needed.
 
-If you deploy somewhere else, update the absolute URLs in `sitemap.xml`, `robots.txt` and the `canonical` and Open Graph tags in `index.html` — they point at `nevada.wib.digital`.
+If you deploy somewhere else, update the absolute URLs in `sitemap.xml`, `robots.txt` and the `canonical` and Open Graph tags in `index.html` — they point at `pablowib.github.io/Millisimo-Furniture-Web`.
 
 ## Author
 

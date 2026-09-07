@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nevada.wib.digital/sitemap.xml
+Sitemap: https://pablowib.github.io/Millisimo-Furniture-Web/sitemap.xml
